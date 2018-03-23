@@ -50,5 +50,10 @@ class TodoTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let addVC = segue.destination as! AddTodoViewController
+        addVC.previousVC = self
+    }
 
 }

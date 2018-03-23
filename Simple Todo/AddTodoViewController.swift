@@ -10,6 +10,8 @@ import UIKit
 
 class AddTodoViewController: UIViewController {
     
+    var previousVC  = TodoTableViewController()
+    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var importantSwitch: UISwitch!
     
@@ -20,7 +22,14 @@ class AddTodoViewController: UIViewController {
     }
     
     @IBAction func addTapped(_ sender: Any) {
+        let todo = Todo()
+        todo.name = titleTextField.text!
+        todo.isImportant = importantSwitch.isOn
         
+        previousVC.todos.append(todo)
+        previousVC.tableView.reloadData()
+        
+        navigationController?.popViewController(animated: true)
     }
     
     
