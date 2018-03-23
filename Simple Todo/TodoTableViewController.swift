@@ -57,6 +57,23 @@ class TodoTableViewController: UITableViewController {
         performSegue(withIdentifier: "moveToComplete", sender: todo)
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let complete = UITableViewRowAction(style: .normal, title: "Complete") { action, index in
+            self.todos.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        complete.backgroundColor = UIColor.blue
+        
+        return [complete]
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let addVC = segue.destination as? AddTodoViewController {
             addVC.previousVC = self
