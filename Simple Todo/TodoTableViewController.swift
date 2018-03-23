@@ -41,8 +41,12 @@ class TodoTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         
         let todo = todos[indexPath.row]
-
-        cell.textLabel?.text = todo.name
+        
+        if todo.isImportant {
+            cell.textLabel?.text = "❗️" + todo.name
+        } else {
+            cell.textLabel?.text = todo.name
+        }
 
         return cell
     }
