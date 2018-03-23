@@ -52,9 +52,21 @@ class TodoTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let todo = todos[indexPath.row]
+        performSegue(withIdentifier: "moveToComplete", sender: todo)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let addVC = segue.destination as? AddTodoViewController {
             addVC.previousVC = self
+        }
+        
+        if let completeVC = segue.destination as? CompleteTodoViewController {
+            if let todo = sender as? Todo {
+                completeVC.selectedTodo = todo
+                completeVC.previousVC = self
+            }
         }
     }
 

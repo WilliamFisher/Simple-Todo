@@ -14,6 +14,7 @@
 		50420F3420656C3A002E543C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50420F3220656C3A002E543C /* LaunchScreen.storyboard */; };
 		50420F3C20656E1F002E543C /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420F3B20656E1F002E543C /* TodoTableViewController.swift */; };
 		50420F3E20656F25002E543C /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50420F3D20656F25002E543C /* Todo.swift */; };
+		5042A9E820659DA800E93F46 /* CompleteTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5042A9E720659DA800E93F46 /* CompleteTodoViewController.swift */; };
 		5081BCC320658ABA00A10313 /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5081BCC220658ABA00A10313 /* AddTodoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		50420F3520656C3A002E543C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50420F3B20656E1F002E543C /* TodoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
 		50420F3D20656F25002E543C /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		5042A9E720659DA800E93F46 /* CompleteTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTodoViewController.swift; sourceTree = "<group>"; };
 		5081BCC220658ABA00A10313 /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 				50420F3B20656E1F002E543C /* TodoTableViewController.swift */,
 				50420F2620656C3A002E543C /* AppDelegate.swift */,
 				50420F2A20656C3A002E543C /* Main.storyboard */,
+				5042A9E720659DA800E93F46 /* CompleteTodoViewController.swift */,
 				5081BCC220658ABA00A10313 /* AddTodoViewController.swift */,
 				50420F3D20656F25002E543C /* Todo.swift */,
 				50420F3020656C3A002E543C /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5042A9E820659DA800E93F46 /* CompleteTodoViewController.swift in Sources */,
 				50420F2F20656C3A002E543C /* Simple_Todo.xcdatamodeld in Sources */,
 				5081BCC320658ABA00A10313 /* AddTodoViewController.swift in Sources */,
 				50420F3C20656E1F002E543C /* TodoTableViewController.swift in Sources */,
