@@ -43,7 +43,8 @@ class TodoTableViewController: UITableViewController {
         let todo = todos[indexPath.row]
         
         if todo.isImportant {
-            cell.textLabel?.text = "❗️" + todo.name
+            cell.textLabel?.text = todo.name
+            cell.textLabel?.textColor = UIColor.red
         } else {
             cell.textLabel?.text = todo.name
         }
