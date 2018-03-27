@@ -22,6 +22,8 @@ class AddTodoViewController: UIViewController {
     }
     
     @IBAction func addTapped(_ sender: Any) {
+      
+    /*
         let todo = Todo()
         
         if let titleText = titleTextField.text {
@@ -32,11 +34,17 @@ class AddTodoViewController: UIViewController {
             previousVC.tableView.reloadData()
             
             navigationController?.popViewController(animated: true)
+    */
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            let todo = TodoCoreData(entity: TodoCoreData.entity(), insertInto: context)
+            
+            if let titleText = titleTextField.text {
+                todo.name = titleText
+                todo.important = importantSwitch.isOn
+            }
+            try? context.save()
+            navigationController?.popViewController(animated: true)
         }
-        
-        
-    }
-    
-    
 
+    }
 }

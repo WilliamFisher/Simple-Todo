@@ -10,25 +10,26 @@ import UIKit
 
 class TodoTableViewController: UITableViewController {
     
-    var todos : [Todo] = []
+    var todos : [TodoCoreData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        todos = createTodos()
     }
     
-    func createTodos() -> [Todo] {
-        
-        let homework = Todo()
-        homework.name = "Homework"
-        homework.isImportant = true
-        
-        let dog = Todo()
-        dog.name = "Walk the dog"
-        dog.isImportant = false
-        
-        return [homework,dog]
+    override func viewWillAppear(_ animated: Bool) {
+        getTodos()
+    }
+    
+    func getTodos() {
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            
+            if let coreDataTodos = try? context.fetch(TodoCoreData.fetchRequest()) as? [TodoCoreData] {
+                if let theTodos = coreDataTodos {
+                    todos = theTodos
+                    tableView.reloadData()
+                }
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,7 +43,7 @@ class TodoTableViewController: UITableViewController {
         
         let todo = todos[indexPath.row]
         
-        if todo.isImportant {
+        if todo.important {
             cell.textLabel?.text = todo.name
             cell.textLabel?.textColor = UIColor.red
         } else {
@@ -57,21 +58,7 @@ class TodoTableViewController: UITableViewController {
         performSegue(withIdentifier: "moveToComplete", sender: todo)
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    }
-    
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let complete = UITableViewRowAction(style: .normal, title: "Complete") { action, index in
-            self.todos.remove(at: indexPath.row)
-            tableView.reloadData()
-        }
-        complete.backgroundColor = UIColor.blue
-        
-        return [complete]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -80,7 +67,7 @@ class TodoTableViewController: UITableViewController {
         }
         
         if let completeVC = segue.destination as? CompleteTodoViewController {
-            if let todo = sender as? Todo {
+            if let todo = sender as? TodoCoreData {
                 completeVC.selectedTodo = todo
                 completeVC.previousVC = self
             }
